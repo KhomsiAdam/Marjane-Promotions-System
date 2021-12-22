@@ -62,9 +62,6 @@ router.post('/admin',
                 });
             })
             .normalizeEmail(),
-        body('password')
-            .trim()
-            .isLength({ min: 5 }),
         body('centerId')
             .trim()
     ],

@@ -35,9 +35,6 @@ router.post('/manager',
                 });
             })
             .normalizeEmail(),
-        body('password')
-            .trim()
-            .isLength({ min: 5 }),
         body('category')
             .trim(),
         body('centerId')
