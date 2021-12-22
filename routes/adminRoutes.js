@@ -9,6 +9,7 @@ const Manager = require('../models/Manager');
 // Controllers
 const adminController = require('../controllers/adminController');
 const managerController = require('../controllers/managerController');
+const promotionController = require('../controllers/promotionController');
 
 // Auth
 const isAdmin = require('../middleware/isAdmin');
@@ -41,6 +42,20 @@ router.post('/manager',
             .trim()
     ],
     managerController.register
+);
+
+// Promotion creation
+router.post('/promotion',
+    isAdmin,
+    [
+        body('discount')
+            .trim(),
+        body('day')
+            .trim(),
+        body('productId')
+            .trim()
+    ],
+    promotionController.create
 );
 
 module.exports = router;
