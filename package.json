@@ -1,0 +1,32 @@
+{
+  "name": "marjane-promotions-system",
+  "version": "1.0.0",
+  "description": "Marjane supermarket chain promotions system",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "express-validator": "^6.14.0",
+    "jsonwebtoken": "^8.3.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KhomsiAdam/Marjane-Promotions-System.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KhomsiAdam/Marjane-Promotions-System/issues"
+  },
+  "homepage": "https://github.com/KhomsiAdam/Marjane-Promotions-System#readme"
+}
