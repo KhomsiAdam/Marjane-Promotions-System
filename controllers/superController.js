@@ -73,6 +73,9 @@ exports.login = (req, res, next) => {
             }
             // Generate token
             const token = jwt.sign(
+                {
+                    id: 'flbody'
+                },
                 process.env.SUPER_KEY,
                 { expiresIn: '1h' }
             );

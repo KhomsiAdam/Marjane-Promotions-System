@@ -67,4 +67,9 @@ router.post('/promotion',
     promotionController.create
 );
 
+// Get all promotions
+router.get('/promotions', isAdmin, promotionController.getPromotions);
+// Get all products
+router.get('/products', isAdmin, promotionController.getProducts);
+
 module.exports = router;

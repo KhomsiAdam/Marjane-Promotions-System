@@ -69,10 +69,44 @@ exports.create = (req, res, next) => {
         })
 };
 
+exports.getPromotions = (req, res, next) => {
+    // Get all promotions 
+    Promotion.findAll({ include: [{ model: Product }], where: { centerId: req.centerId }, raw: true })
+        .then(promotions => {
+            if (promotions.length > 0) {
+                res.status(200).json({
+                    message: `Promotions fetched successfully`,
+                    promotions: promotions
+                });
+            } else {
+                res.status(200).json({
+                    message: 'There are no promotions available.'
+                });
+            }
+        })
+}
+
+exports.getProducts = (req, res, next) => {
+    // Get all products 
+    Product.findAll({ raw: true })
+        .then(products => {
+            if (products.length > 0) {
+                res.status(200).json({
+                    message: `Products fetched successfully`,
+                    products: products
+                });
+            } else {
+                res.status(200).json({
+                    message: 'There are no products available.'
+                });
+            }
+        })
+}
+
 exports.getMyPromotions = (req, res, next) => {
     // Get current date
     const date = new Date();
-    
+
     let hour = date.getHours();
 
     let day = ("0" + date.getDate()).slice(-2);
