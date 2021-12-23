@@ -9,12 +9,22 @@ const Manager = require('../models/Manager');
 // Controllers
 const adminController = require('../controllers/adminController');
 const managerController = require('../controllers/managerController');
+const promotionController = require('../controllers/promotionController');
 
 // Auth
 const isAdmin = require('../middleware/isAdmin');
 
 // Admin login
-router.post('/login', adminController.login);
+router.post('/login',
+    [
+        body('email')
+            .isEmail()
+            .withMessage('Please enter a valid email.')
+            .normalizeEmail(),
+        body('password')
+            .trim()
+    ],
+    adminController.login);
 
 // Manager creation
 router.post('/manager',
@@ -42,5 +52,24 @@ router.post('/manager',
     ],
     managerController.register
 );
+
+// Promotion creation
+router.post('/promotion',
+    isAdmin,
+    [
+        body('discount')
+            .trim(),
+        body('day')
+            .trim(),
+        body('productId')
+            .trim()
+    ],
+    promotionController.create
+);
+
+// Get all promotions
+router.get('/promotions', isAdmin, promotionController.getPromotions);
+// Get all products
+router.get('/products', isAdmin, promotionController.getProducts);
 
 module.exports = router;

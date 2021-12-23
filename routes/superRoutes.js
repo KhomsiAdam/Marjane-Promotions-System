@@ -28,7 +28,7 @@ router.post(
                     }
                 }).then(userDoc => {
                     if (userDoc) {
-                        return Promise.reject('E-Mail address already exists!');
+                        return Promise.reject('Email address already exists!');
                     }
                 });
             })
@@ -41,7 +41,16 @@ router.post(
 );
 
 // SuperAdmin login
-router.post('/login', superController.login);
+router.post('/login',
+[
+    body('email')
+        .isEmail()
+        .withMessage('Please enter a valid email.')
+        .normalizeEmail(),
+    body('password')
+        .trim()
+],
+superController.login);
 
 // Admin creation
 router.post('/admin',
