@@ -17,15 +17,27 @@ const Promotion = sequelize.define('promotion', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    status: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
     day: {
         type: Sequelize.DATEONLY,
         allowNull: false
     },
+    status: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    comment: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    currentStock: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
     productId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    centerId: {
         type: Sequelize.INTEGER,
         allowNull: false
     }

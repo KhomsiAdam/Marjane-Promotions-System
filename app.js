@@ -55,6 +55,7 @@ app.use((error, req, res, next) => {
 Admin.belongsTo(Center);
 Manager.belongsTo(Center);
 Promotion.belongsTo(Product);
+Promotion.belongsTo(Center);
 
 //* Uncomment to drop tables and migrate fresh
 // db.sync({ force: true })
@@ -66,8 +67,10 @@ Promotion.belongsTo(Product);
 //         Center.create({ name: 'Marjane Hay Riad', city: 'Rabat' });
 //         Product.create({ name: 'Camera', category: 'Multimedia', price: 4000, quantity: 80 });
 //         Product.create({ name: 'TV', category: 'Multimedia', price: 8000, quantity: 20 });
+//         Product.create({ name: 'Monitor', category: 'Multimedia', price: 6000, quantity: 40 });
 //         Product.create({ name: 'M&Ms', category: 'Candy', price: 60, quantity: 80 });
 //         Product.create({ name: 'Snickers', category: 'Candy', price: 40, quantity: 20 });
+//         Product.create({ name: 'Mars', category: 'Candy', price: 30, quantity: 40 });
 //     })
 db.sync()
     .then(result => {

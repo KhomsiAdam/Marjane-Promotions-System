@@ -15,7 +15,16 @@ const promotionController = require('../controllers/promotionController');
 const isAdmin = require('../middleware/isAdmin');
 
 // Admin login
-router.post('/login', adminController.login);
+router.post('/login',
+    [
+        body('email')
+            .isEmail()
+            .withMessage('Please enter a valid email.')
+            .normalizeEmail(),
+        body('password')
+            .trim()
+    ],
+    adminController.login);
 
 // Manager creation
 router.post('/manager',
