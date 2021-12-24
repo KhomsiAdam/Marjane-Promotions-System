@@ -95,14 +95,7 @@ exports.getPromotions = (req, res, next) => {
     where: { centerId: req.centerId },
     raw: true,
   }).then((promotions) => {
-    if (promotions) {
-      logController.saveLog(
-        "Admin",
-        req.id,
-        "Fetching Promotions",
-        `Admin Fetched Center(ID:${req.id}'s) Promotions`
-      );
-
+    if (promotions.length > 0) {
       res.status(200).json({
         message: `Promotions fetched successfully`,
         promotions: promotions,
@@ -119,12 +112,6 @@ exports.getProducts = (req, res, next) => {
   // Get all products
   Product.findAll({ raw: true }).then((products) => {
     if (products.length > 0) {
-      logController.saveLog(
-        "Manager",
-        req.id,
-        "Fetching Products",
-        `Manager of Aisle (${req.category}) Fetched Its Products`
-      );
       res.status(200).json({
         message: `Products fetched successfully`,
         products: products,
@@ -158,12 +145,6 @@ exports.getMyPromotions = (req, res, next) => {
       raw: true,
     }).then((promotions) => {
       if (promotions.length > 0) {
-        logController.saveLog(
-          "Manager",
-          req.id,
-          "Fetching Products",
-          `Manager of Aisle (${req.category}) Fetched Its Promotions`
-        );
         res.status(200).json({
           message: `Promotions of category ${req.category} fetched successfully`,
           promotions: promotions,

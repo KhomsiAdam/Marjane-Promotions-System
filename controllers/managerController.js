@@ -123,11 +123,8 @@ exports.login = (req, res, next) => {
             let year = date.getFullYear();
             let fullDate = year + "-" + month + "-" + day;
             // Get all promotions of same category of manager to mark as 'Untreated'
-            Promotion.findAll({
-                include: [{ model: Product, where: { category: loadedUser.category } }],
-                where: { status: "Pending", day: fullDate },
-                raw: true,
-            }).then((promotions) => {
+            Promotion.findAll({ include: [{ model: Product, where: { category: loadedUser.category } }], where: { status: "Pending", day: fullDate }, raw: true })
+            .then((promotions) => {
                 console.log(promotions);
                 promotions.forEach((promotion) => {
                     console.log(promotion);
