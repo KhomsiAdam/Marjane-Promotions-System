@@ -1,47 +1,47 @@
 // dotenv
-require('dotenv').config();
+require("dotenv").config();
 
 // Express
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 
 // Database
-const db = require('./config/database');
+const db = require("./config/database");
 
 // Bcrypt
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 // Models
-const SuperAdmin = require('./models/SuperAdmin');
-const Admin = require('./models/Admin');
-const Manager = require('./models/Manager');
-const Center = require('./models/Center');
-const Product = require('./models/Product');
-const Promotion = require('./models/Promotion');
+const SuperAdmin = require("./models/SuperAdmin");
+const Admin = require("./models/Admin");
+const Manager = require("./models/Manager");
+const Center = require("./models/Center");
+const Product = require("./models/Product");
+const Promotion = require("./models/Promotion");
 
 // Routes
-const superRoutes = require('./routes/superRoutes');
-const adminRoutes = require('./routes/adminRoutes');
-const managerRoutes = require('./routes/managerRoutes');
+const superRoutes = require("./routes/superRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const managerRoutes = require("./routes/managerRoutes");
 
 const app = express();
 
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
-    'Access-Control-Allow-Methods',
-    'OPTIONS, GET, POST, PUT, PATCH, DELETE'
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
   );
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
 
 // Endpoints
-app.use('/super', superRoutes);
-app.use('/admin', adminRoutes);
-app.use('/manager', managerRoutes);
+app.use("/super", superRoutes);
+app.use("/admin", adminRoutes);
+app.use("/manager", managerRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
@@ -73,9 +73,9 @@ Promotion.belongsTo(Center);
 //         Product.create({ name: 'Mars', category: 'Candy', price: 30, quantity: 40 });
 //     })
 db.sync()
-    .then(result => {
-        app.listen(process.env.PORT || 3000, () => console.log('Server running'));
-    })
-    .catch(err => {
-        console.log(err);
-    })
+  .then((result) => {
+    app.listen(process.env.PORT || 3000, () => console.log("Server running"));
+  })
+  .catch((err) => {
+    console.log(err);
+  });
