@@ -95,7 +95,7 @@ exports.getPromotions = (req, res, next) => {
     where: { centerId: req.centerId },
     raw: true,
   }).then((promotions) => {
-    if (promotions.length > 0) {
+    if (promotions) {
       logController.saveLog(
         "Admin",
         req.id,
